@@ -1,14 +1,11 @@
 <template>
-  <div class="ztxHome">
-    <router-view />
-  </div>
+  <div class="test">test</div>
 </template>
 <script lang="ts" setup>
-// import { ref } from "vue";
+import { ref } from "vue";
 </script>
 <style lang="scss" scoped>
-@import "~@/assets/layout.scss";
-.ztxHome {
+.test {
   width: 100%;
   height: 100%;
 }

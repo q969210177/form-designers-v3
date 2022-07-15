@@ -1,10 +1,9 @@
-import "lib-flexible";
-import ztxCompoents from "../ztxCompoents/ztxCompoents.vue";
+import ztxCompoents from "./ztxHtmlMain.vue";
+import { autoCompoents } from "./utils/autoCompoents";
 import { IexportDefault } from "./type/globalZtx";
 const exportObj: IexportDefault = {
   install(Vue) {
-    //
-    console.log(Vue, "Vue");
+    autoCompoents(Vue);
     Vue.component("ztxCompoents", ztxCompoents);
   },
 };

@@ -1,25 +1,29 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
-
+import { RouteRecordRaw } from "vue-router";
+import ztxHtmlMain from "../../ztxCompoents/ztxHtmlMain.vue";
 const routes: Array<RouteRecordRaw> = [
-  //   {
-  //     path: "/",
-  //     name: "home",
-  //     component: HomeView,
-  //   },
-  //   {
-  //     path: "/about",
-  //     name: "about",
-  //     // route level code-splitting
-  //     // this generates a separate chunk (about.[hash].js) for this route
-  //     // which is lazy-loaded when the route is visited.
-  //     component: () =>
-  //       import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
-  //   },
+  {
+    path: "/",
+    name: "home",
+    component: ztxHtmlMain,
+    redirect: "/ztxList",
+    children: [
+      {
+        path: "ztxList",
+        name: "ztxList",
+        component: () => import("../../ztxCompoents/views/ztxList.vue"),
+      },
+      {
+        path: "ztxForm",
+        name: "ztxForm",
+        component: () => import("../../ztxCompoents/views/ztxForm.vue"),
+      },
+    ],
+  },
 ];
 
-const router = createRouter({
-  history: createWebHashHistory(),
-  routes,
-});
+// const router = createRouter({
+//   history: createWebHashHistory(),
+//   routes,
+// });
 
-export default router;
+export default routes;
