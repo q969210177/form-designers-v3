@@ -29,17 +29,12 @@ interface ItypeFormatObj {
   date: string;
   "year-month": string;
   "month-day": string;
-  // time: string
   datetime: string;
   datehour: string;
-  // yearMonth: string
-  // monthDay: string
-  // datehour: string
-  // datetime: string
 }
 interface Iprops {
   modelValue: string;
-  type: IdateType;
+  type?: IdateType;
   format?: string;
   title?: string;
 }

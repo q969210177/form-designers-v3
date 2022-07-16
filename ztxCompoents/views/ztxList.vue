@@ -6,21 +6,39 @@
       <div class="width-30">到期时间</div>
     </header>
     <main class="main">
-      <div class="main_item">
-        <div class="width-30">张三</div>
-        <div class="width-30">15天的那个</div>
+      <div class="main_item" v-for="(v, k) in litigationList" :key="k">
+        <div class="width-30">{{ v.userName }}</div>
         <div class="width-30">
-          <div>2022-07-02</div>
+          {{ handleReturnLitigationType(v.litigationType) }}
+        </div>
+        <div class="width-30">
+          <div>{{ v.endStartTime }}</div>
         </div>
       </div>
     </main>
   </div>
 </template>
 <script lang="ts" setup>
-import { title, rightText, pathValue } from "../globalData/index";
+import {
+  title,
+  rightText,
+  pathValue,
+  litigationList,
+  setLitigationList,
+  litigationTypeOptions,
+  IlitigationTypeOptionsItem,
+} from "../globalData/index";
+import { handleSerachSomeOne } from "../../src/utils/utils";
 title.value = "列表";
 rightText.value = "去新增";
 pathValue.value = "ztxForm";
+setLitigationList();
+function handleReturnLitigationType(litigationType: number) {
+  return handleSerachSomeOne<
+    IlitigationTypeOptionsItem,
+    IlitigationTypeOptionsItem["value"]
+  >(litigationTypeOptions.value, litigationType, "value", "label");
+}
 </script>
 <style lang="scss" scoped>
 @import "~@/assets/layout.scss";

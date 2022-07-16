@@ -21,7 +21,7 @@
 </template>
 <script lang="ts" setup>
 import { title, rightText, pathValue } from "./globalData/index";
-import { ref } from "vue";
+// import { ref } from "vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
 function handleClickRight() {

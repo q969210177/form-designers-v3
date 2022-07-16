@@ -9,6 +9,8 @@ import {
   Form,
   NavBar,
   Popup,
+  Radio,
+  RadioGroup,
 } from "vant";
 import "vant/lib/index.css";
 import "lib-flexible";
@@ -22,6 +24,8 @@ const compoentsArr = [
   Form,
   Popup,
   DatetimePicker,
+  Radio,
+  RadioGroup,
 ];
 export function autoCompoents(app: App) {
   compoentsArr.forEach((v) => {
