@@ -4,7 +4,7 @@
       <router-link to="/AppHome/ccc">列表页</router-link>
     </nav>
     <div>
-      <router-view />
+      <zformcreateVant></zformcreateVant>
     </div>
   </div>
 </template>
