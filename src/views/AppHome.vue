@@ -3,9 +3,7 @@
     <nav>
       <router-link to="/AppHome/ccc">列表页</router-link>
     </nav>
-    <div>
-      <zformcreateVant></zformcreateVant>
-    </div>
+    <div></div>
   </div>
 </template>
 <script lang="ts" setup>
