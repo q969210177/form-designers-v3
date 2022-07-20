@@ -3,7 +3,7 @@ import ztxRouter from "./ztxRouter";
 export const routes: Array<RouteRecordRaw> = [
   ...ztxRouter,
   {
-    path: "/AppHome",
+    path: "/",
     name: "AppHome",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route

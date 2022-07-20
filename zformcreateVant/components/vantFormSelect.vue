@@ -1,5 +1,17 @@
 <template>
-  <div class="vantFormSelect">{{ modelValue }}111</div>
+  <div class="vantFormSelect">
+    <div @click="showPicker = true">{{ showValue }}</div>
+    <van-popup v-model:show="showPicker" position="bottom">
+      <!-- <van-datetime-picker
+        v-bind="attr"
+        :title="title"
+        v-model="datePickModel"
+        :type="type"
+        @confirm="onConfirm"
+        @cancel="showPicker = false"
+      /> -->
+    </van-popup>
+  </div>
 </template>
 <script lang="ts" setup>
 import {
@@ -23,6 +35,10 @@ const attr = useAttrs();
 const emit = defineEmits<Iemit>();
 //拿到props
 const prop = withDefaults(defineProps<Iprops>(), {});
+//控制选择list的开关
+const showPicker: Ref<boolean> = ref(false);
+//默认展示的的文字
+const showValue: Ref<string> = ref("请选择");
 </script>
 <style lang="scss" scoped>
 .vantFormSelect {

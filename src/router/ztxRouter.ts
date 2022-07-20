@@ -2,8 +2,8 @@ import { RouteRecordRaw } from "vue-router";
 import ztxHtmlMain from "../../ztxCompoents/ztxHtmlMain.vue";
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/",
-    name: "home",
+    path: "/ztxHtmlMain",
+    name: "ztxHtmlMain",
     component: ztxHtmlMain,
     redirect: "/ztxList",
     children: [

@@ -14,7 +14,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import * as moment from "moment";
+import moment from "moment";
 import {
   ref,
   defineProps,
