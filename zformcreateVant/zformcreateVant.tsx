@@ -2,6 +2,9 @@
 import { defineComponent, h, PropType } from "vue";
 import { componentsDataObj } from "./globalData/index";
 import { IruleItem } from "./type/globalZformcreateVant";
+// interface IformData {
+//   []
+// }
 const zformcreateVant = defineComponent({
   name: "zformcreateVant",
   props: {
@@ -41,13 +44,12 @@ const zformcreateVant = defineComponent({
       return "";
     }
     //渲染其他类型的组件 --- 不需要放在van-field里面的
-
     //通过一个函数来分发渲染
     function returnCompoents(ruleItem: IruleItem) {
-      // console.log(ruleItem?.isComponents);
-      // if (ruleItem.isComponents) {
-      //   return returnFormCompoents();
-      // }
+      console.log(ruleItem?.isComponents);
+      if (ruleItem.isComponents) {
+        return returnFormCompoents(ruleItem);
+      }
       return returnFormCompoents(ruleItem);
     }
     const dom = (
