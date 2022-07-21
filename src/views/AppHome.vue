@@ -13,7 +13,6 @@ const testRule: Ref<IruleItem[]> = ref([
     value: "",
     label: "1111",
     props: {},
-    rule: [{ required: true, message: "请填写用户名" }],
   },
   {
     type: "select",
@@ -22,6 +21,12 @@ const testRule: Ref<IruleItem[]> = ref([
     label: "3333",
     props: {},
     rule: [{ required: true, message: "请填写用户名" }],
+    isComponents: true,
+    on: {
+      openPopup: () => {
+        console.log(111, "");
+      },
+    },
   },
 ]);
 </script>

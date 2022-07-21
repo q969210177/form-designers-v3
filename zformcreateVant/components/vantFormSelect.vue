@@ -1,6 +1,6 @@
 <template>
   <div class="vantFormSelect">
-    <div @click="showPicker = true">{{ showValue }}</div>
+    <div @click="handleOpenPopup">{{ showValue }}</div>
     <van-popup v-model:show="showPicker" position="bottom">
       <!-- <van-datetime-picker
         v-bind="attr"
@@ -28,6 +28,7 @@ interface Iprops {
 }
 interface Iemit {
   (e: "update:modelValue", v: string): void;
+  (e: "openPopup"): void;
 }
 //拿到attrs
 const attr = useAttrs();
@@ -39,6 +40,11 @@ const prop = withDefaults(defineProps<Iprops>(), {});
 const showPicker: Ref<boolean> = ref(false);
 //默认展示的的文字
 const showValue: Ref<string> = ref("请选择");
+//打开弹窗的事件
+function handleOpenPopup() {
+  showPicker.value = true;
+  emit("openPopup");
+}
 </script>
 <style lang="scss" scoped>
 .vantFormSelect {

@@ -24,5 +24,7 @@ export interface IruleItem {
   label: string;
   props?: { [x: string]: any };
   isComponents?: boolean;
-  rule: IvalidatorItem[];
+  rule?: IvalidatorItem[];
+  options?: any[];
+  on?: { [x: string]: any };
 }

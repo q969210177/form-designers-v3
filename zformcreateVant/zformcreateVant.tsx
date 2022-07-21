@@ -16,8 +16,30 @@ const zformcreateVant = defineComponent({
     },
   },
   setup(props, { emit }) {
+    //设置一下组件的事件
+    function setCompoentsEvent(
+      eventObj: undefined | { [x: string]: (v: any) => void }
+    ) {
+      if (eventObj && typeof eventObj === "object") {
+        const newObj: { [x: string]: any } = {};
+        for (const key in eventObj) {
+          if (Object.prototype.hasOwnProperty.call(eventObj, key)) {
+            const element = eventObj[key];
+            const newKey =
+              key.slice(0, 1).toUpperCase() + key.slice(1).toLowerCase();
+            newObj[`on${newKey}`] = element;
+            // newObj..
+          }
+        }
+        console.log(newObj, "evventObj");
+      }
+      return "";
+    }
     //渲染form类型的组件
-    function returnFormCompoents(ruleItem: IruleItem) {
+    function returnFormCompoents(
+      ruleItem: IruleItem,
+      propAndEvent: { [x: string]: any }
+    ) {
       if (componentsDataObj[ruleItem.type]) {
         const returnDom = componentsDataObj[ruleItem.type];
         return (
@@ -30,12 +52,7 @@ const zformcreateVant = defineComponent({
             {{
               input: () =>
                 h(returnDom, {
-                  modelValue: ruleItem.value,
-                  ...{
-                    "onUpdate:modelValue": (v: any) => {
-                      ruleItem.value = v;
-                    },
-                  },
+                  ...propAndEvent,
                 }),
             }}
           </van-field>
@@ -44,13 +61,30 @@ const zformcreateVant = defineComponent({
       return "";
     }
     //渲染其他类型的组件 --- 不需要放在van-field里面的
+    function returnOtherCompoents(ruleItem: IruleItem, propAndEvent: any) {
+      if (componentsDataObj[ruleItem.type]) {
+        const returnDom = componentsDataObj[ruleItem.type];
+        return h(returnDom, {
+          ...propAndEvent,
+        });
+      }
+    }
     //通过一个函数来分发渲染
     function returnCompoents(ruleItem: IruleItem) {
-      console.log(ruleItem?.isComponents);
-      if (ruleItem.isComponents) {
-        return returnFormCompoents(ruleItem);
+      setCompoentsEvent(ruleItem.on);
+      const propAndEvent: { [x: string]: any } = {
+        ...ruleItem.props,
+        ...ruleItem.on,
+        modelValue: ruleItem.value,
+        "onUpdate:modelValue": (v: any) => (ruleItem.value = v),
+      };
+      if (ruleItem.options) {
+        propAndEvent.options = ruleItem.options;
       }
-      return returnFormCompoents(ruleItem);
+      if (ruleItem.isComponents) {
+        return returnOtherCompoents(ruleItem, propAndEvent);
+      }
+      return returnFormCompoents(ruleItem, propAndEvent);
     }
     const dom = (
       <div class={["zformcreateVant"]}>

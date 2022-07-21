@@ -21,3 +21,5 @@ export function handleSerachSomeOne<
   }
   return null;
 }
+
+//设置组件的事件
