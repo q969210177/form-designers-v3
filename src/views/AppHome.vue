@@ -1,11 +1,14 @@
 <template>
   <div class="AppHome">
-    <zformcreateVant :rule="testRule"></zformcreateVant>
+    <resumeWorld />
+    <!-- <zformcreateVant :rule="testRule"></zformcreateVant> -->
   </div>
 </template>
 <script lang="ts" setup>
 import { ref, Ref } from "vue";
 import { IruleItem } from "../../zformcreateVant/type/globalZformcreateVant"; //"zformcreateVant/type/globalZformcreateVant"
+import resumeWorld from "./appViews/resume-world.vue";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const testRule: Ref<IruleItem[]> = ref([
   {
     type: "date",
