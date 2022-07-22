@@ -28,7 +28,6 @@ const zformcreateVant = defineComponent({
             const newKey =
               key.slice(0, 1).toUpperCase() + key.slice(1).toLowerCase();
             newObj[`on${newKey}`] = element;
-            // newObj..
           }
         }
         console.log(newObj, "evventObj");
