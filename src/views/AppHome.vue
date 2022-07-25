@@ -15,6 +15,7 @@ const testRule: Ref<IruleItem[]> = ref([
     fileId: "aaa",
     value: "",
     label: "1111",
+    rule: [{ required: true, message: "请填写用户名" }],
     props: {},
   },
   {
@@ -25,11 +26,11 @@ const testRule: Ref<IruleItem[]> = ref([
     props: {},
     rule: [{ required: true, message: "请填写用户名" }],
     isComponents: true,
-    on: {
-      openPopup: () => {
-        console.log(111, "");
-      },
-    },
+    // on: {
+    //   openPopup: () => {
+    //     console.log(111, "");
+    //   },
+    // },
   },
 ]);
 </script>
