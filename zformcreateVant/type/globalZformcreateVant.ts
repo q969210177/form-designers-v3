@@ -1,6 +1,8 @@
-import type { App } from "vue";
+import type { App, VNode } from "vue";
 export interface IexportDefault<T = any> {
   install: (Vue: App, option: T) => void;
+  component: (Vnode: VNode, name: string) => void;
+  zVue: null | App;
 }
 
 // required	是否为必选字段，当值为空字符串、空数组、undefined、null 时，校验不通过	boolean
