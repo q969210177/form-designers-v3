@@ -2,6 +2,7 @@
   <div class="vantFormSelect">
     <div @click="handleOpenPopup">{{ showValue }}</div>
     <van-popup v-model:show="showPicker" position="bottom">
+      {{ options }}
       <!-- <van-datetime-picker
         v-bind="attr"
         :title="title"
@@ -20,11 +21,11 @@ import {
   Ref,
   defineEmits,
   withDefaults,
-  watchEffect,
   useAttrs,
 } from "vue";
 interface Iprops {
   modelValue: any;
+  options: any[];
 }
 interface Iemit {
   (e: "update:modelValue", v: string): void;
