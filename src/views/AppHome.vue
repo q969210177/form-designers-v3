@@ -1,6 +1,15 @@
 <template>
   <div class="AppHome">
-    <vantFormList :options="testOptions"></vantFormList>
+    <vantFormList :count="testOptions.length" v-model="pageNo">
+      <van-cell-group>
+        <van-cell
+          :title="v.c"
+          v-for="(v, k) in testOptions"
+          :key="k"
+          :value="v.a"
+        />
+      </van-cell-group>
+    </vantFormList>
     <!-- <zformcreateVant :rule="testRule"></zformcreateVant> -->
   </div>
 </template>
@@ -8,7 +17,7 @@
 import { ref, Ref } from "vue";
 import { IruleItem } from "../../zformcreateVant/type/globalZformcreateVant"; //"zformcreateVant/type/globalZformcreateVant"
 import vantFormList from "../../zformcreateVant/components/vantFormList.vue";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const pageNo: Ref<number> = ref(1);
 const testOptions: Ref<any[]> = ref([
   // { a: 1, b: 2, c: 13 },
   // { a: 1, b: 2, c: 23 },
@@ -18,7 +27,7 @@ const testOptions: Ref<any[]> = ref([
   // { a: 1, b: 2, c: 63 },
 ]);
 for (let index = 0; index < 100; index++) {
-  testOptions.value.push({ a: 1, b: 2, c: 13 + index });
+  testOptions.value.push({ a: index, b: 2, c: 13 + index });
 }
 const testRule: Ref<IruleItem[]> = ref([
   {

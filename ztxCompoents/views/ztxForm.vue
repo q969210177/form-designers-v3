@@ -22,15 +22,15 @@
             </van-field>
           </van-cell>
           <van-cell title="诉讼类型">
-            <vantFormSelect v-model="formData.litigationType"></vantFormSelect>
-            <!-- <van-radio-group v-model="formData.litigationType">
+            <!-- <vantFormSelect v-model="formData.litigationType"></vantFormSelect> -->
+            <van-radio-group v-model="formData.litigationType">
               <van-radio
                 v-for="(v, k) in litigationTypeOptions"
                 :name="v.value"
                 :key="k"
                 >{{ v.label }}</van-radio
               >
-            </van-radio-group> -->
+            </van-radio-group>
           </van-cell>
         </van-cell-group>
         <div class="footer">
@@ -53,23 +53,25 @@ import {
   pathValue,
   litigationList,
   IlitigationListItem,
-  // litigationTypeOptions,
+  litigationTypeOptions,
 } from "../globalData/index";
 import vantFormDate from "../../zformcreateVant/components/vantFormDate.vue";
 import vantFormSelect from "../../zformcreateVant/components/vantFormSelect.vue";
 import * as moment from "moment";
 // import {Solar, Lunar, HolidayUtil} from 'lunar-typescript';
 import { HolidayUtil } from "lunar-typescript";
+import { useRouter } from "vue-router";
 title.value = "计算到期时间";
 rightText.value = "查看既往信息";
 pathValue.value = "ztxList";
+
 const formData: Ref<IlitigationListItem> = ref({
   userName: "测试姓名",
   startTime: "2022-10-01",
   litigationType: 15,
   endStartTime: "", //诉讼结束的日期
 });
-
+const router = useRouter();
 function handleSubmitClick() {
   //获取选择的天数
   const { litigationType, startTime } = formData.value;
@@ -102,6 +104,7 @@ function handleSubmitClick() {
   //把list丢到 localStorage
   localStorage.removeItem("litigationList");
   localStorage.setItem("litigationList", JSON.stringify(litigationList.value));
+  router.push("/ztxHtmlMain/ztxList");
 }
 </script>
 <style lang="scss" scoped>
