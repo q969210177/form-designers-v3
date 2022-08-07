@@ -8,6 +8,7 @@
     @touchend="getEnd"
     @scroll="handleSwipeUp($event)"
   >
+    {{ pageNo }}
     <slot></slot>
   </div>
 </template>
@@ -19,10 +20,12 @@ interface Iprops {
   count: number;
   modelValue: number;
   isLodaing?: boolean;
+  pageSize?: number;
 }
 interface Iemit {
   (e: "pullUp"): void;
   (e: "pullDown"): void;
+  (e: "update:modelValue", v: number): void;
 }
 const divRef: Ref<HTMLDivElement | null> = ref(null);
 const emit = defineEmits<Iemit>();
@@ -31,8 +34,10 @@ const position: Ref<{ x: number; y: number }> = ref({
   y: 0,
 });
 const props = withDefaults(defineProps<Iprops>(), {
-  isLodaing: false,
+  isLodaing: true,
+  pageSize: 20,
 });
+const pageNo: Ref<number> = ref(1);
 // const { options } = toRefs(props);
 // const upTitle = ref("上拉加载中");
 function handleSwipeUp(params: any) {
@@ -54,13 +59,18 @@ function getEnd(TouchEvent: TouchEvent) {
   const { screenY } = changedTouches[0];
   if (divRef.value) {
     const { scrollTop } = divRef.value;
-    if (screenY > position.value.y && scrollTop === 0) {
+    if (screenY > position.value.y && scrollTop === 0 && pageNo.value > 1) {
+      pageNo.value--;
       returnFunc("pullUp");
       return;
     }
-    if (screenY < position.value.y && scrollTop > 300) {
+    if (
+      screenY < position.value.y &&
+      scrollTop > 300 &&
+      pageNo.value < Math.round(props.count / props.pageSize)
+    ) {
+      pageNo.value++;
       returnFunc("pullDown");
-
       return;
     }
   }
@@ -75,7 +85,7 @@ function returnFunc(type: "pullUp" | "pullDown") {
       overlay: true,
     });
   }
-
+  emit("update:modelValue", pageNo.value);
   emit(type);
 }
 </script>
