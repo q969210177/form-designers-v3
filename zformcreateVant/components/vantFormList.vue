@@ -44,7 +44,7 @@ function handleSwipeUp(params: any) {
   //   console.log(params, "params");
 }
 
-//划入开始事件
+//touch开始事件
 function getStart(TouchEvent: TouchEvent) {
   const { touches } = TouchEvent;
   const { screenY } = touches[0];
@@ -53,15 +53,17 @@ function getStart(TouchEvent: TouchEvent) {
     y: screenY,
   };
 }
-
+//touch结束事件
 function getEnd(TouchEvent: TouchEvent) {
   const { changedTouches } = TouchEvent;
   const { screenY } = changedTouches[0];
   if (divRef.value) {
     const { scrollTop } = divRef.value;
+    //判断是上拉还是下拉
     if (screenY > position.value.y && scrollTop === 0 && pageNo.value > 1) {
       pageNo.value--;
-      returnFunc("pullUp");
+      returnFunc();
+      emit("pullUp");
       return;
     }
     if (
@@ -70,12 +72,13 @@ function getEnd(TouchEvent: TouchEvent) {
       pageNo.value < Math.round(props.count / props.pageSize)
     ) {
       pageNo.value++;
-      returnFunc("pullDown");
+      returnFunc();
+      emit("pullDown");
       return;
     }
   }
 }
-function returnFunc(type: "pullUp" | "pullDown") {
+function returnFunc() {
   if (props.isLodaing) {
     Toast.loading({
       message: "加载中...",
@@ -86,7 +89,6 @@ function returnFunc(type: "pullUp" | "pullDown") {
     });
   }
   emit("update:modelValue", pageNo.value);
-  emit(type);
 }
 </script>
 <style lang="scss" scoped>
