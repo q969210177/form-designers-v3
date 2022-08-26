@@ -30,3 +30,5 @@ export interface IruleItem {
   options?: any[];
   on?: { [x: string]: any };
 }
+
+// export type

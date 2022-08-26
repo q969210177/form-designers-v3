@@ -30,7 +30,6 @@ const zformcreateVant = defineComponent({
             newObj[`on${newKey}`] = element;
           }
         }
-        console.log(newObj, "evventObj");
       }
       return "";
     }

@@ -85,7 +85,7 @@ watchEffect(() => {
     showValue.value = prop.modelValue;
     datePickModel.value = new Date(prop.modelValue);
   } else {
-    showValue.value = "请选择时间";
+    showValue.value = prop.title;
   }
 });
 </script>
