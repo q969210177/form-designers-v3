@@ -1,10 +1,14 @@
 <template>
   <div class="ztxHome">
-    <router-view />
+    <!-- <router-view /> -->
   </div>
 </template>
 <script lang="ts" setup>
-// import { ref } from "vue";
+import { ref, defineProps } from "vue";
+interface Iprops {
+  compoent: any;
+}
+const props = defineProps<Iprops>();
 </script>
 <style lang="scss" scoped>
 @import "~@/assets/layout.scss";

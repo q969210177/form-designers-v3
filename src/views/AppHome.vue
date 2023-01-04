@@ -11,50 +11,15 @@
         />
       </van-cell-group>
     </vantFormList> -->
-    <zformcreateVant :rule="testRule"></zformcreateVant>
+
+    <!-- <resumeWorld :value="aaaa" @test="test"></resumeWorld> -->
+    <!-- <zformcreateVant :rule="testRule"></zformcreateVant> -->
+    <ztxHomeVue :compoent="resumeWorld"></ztxHomeVue>
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, Ref } from "vue";
-import { IruleItem } from "../../zformcreateVant/type/globalZformcreateVant"; //"zformcreateVant/type/globalZformcreateVant"
-const options = [];
-for (let index = 0; index < 100; index++) {
-  options.push({
-    label: `第${index + 1}个`,
-    value: index,
-    ccc: index,
-  });
-}
-const testRule: Ref<IruleItem[]> = ref([
-  {
-    type: "date",
-    fileId: "aaa",
-    value: "",
-    label: "1111",
-    rule: [{ required: true, message: "请填写用户名" }],
-    props: {
-      title: "请选择放行时间",
-    },
-  },
-  {
-    type: "select",
-    fileId: "aadddda",
-    value: "",
-    label: "3333",
-    props: {
-      height: 70,
-    },
-    rule: [{ required: true, message: "请填写用户名" }],
-    // isComponents: true,
-    options: options,
-  },
-  {
-    type: "input",
-    fileId: "cccc",
-    value: "",
-    label: "222",
-  },
-]);
+import resumeWorld from "@/views/appViews/resume-world.vue";
+import ztxHomeVue from "./ztxHome.vue";
 </script>
 <style lang="scss" scoped>
 .AppHome {
