@@ -4,9 +4,9 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, defineProps } from "vue";
+import { ref, defineProps, Component } from "vue";
 interface Iprops {
-  compoent: any;
+  compoent: Component;
 }
 const props = defineProps<Iprops>();
 </script>
