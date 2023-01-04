@@ -1,6 +1,7 @@
 <template>
   <div class="ztxHome">
     <!-- <router-view /> -->
+    <aaa></aaa>
   </div>
 </template>
 <script lang="ts" setup>
@@ -9,6 +10,8 @@ interface Iprops {
   compoent: Component;
 }
 const props = defineProps<Iprops>();
+const aaa = ref(props.compoent);
+console.log(props);
 </script>
 <style lang="scss" scoped>
 @import "~@/assets/layout.scss";
